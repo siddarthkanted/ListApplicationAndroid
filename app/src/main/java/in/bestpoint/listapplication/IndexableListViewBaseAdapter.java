@@ -61,13 +61,16 @@ public class IndexableListViewBaseAdapter extends BaseAdapter implements Filtera
                 view = layoutInflater.inflate(R.layout.item_indexable_list_view, viewGroup, false);
         }
         Data data = filteredDataList.get(i);
-        ImageView imageView = (ImageView) view.findViewById(R.id.circularImage);
-        ColorUtils.setCharacterAsImage(data.getTitle(), imageView, i);
+        setImage(data, view, i);
         TextViewUtils.setTextInTextViewIfNotNull(view, R.id.title, data.getTitle());
         TextViewUtils.setTextInTextViewIfNotNull(view, R.id.summary, StringUtils.getLimitedString(HtmlUtil.GetFirstElementText(data.getText()), 70));
         return view;
     }
 
+    private void setImage(Data data, View view, int position){
+        ImageView imageView = (ImageView) view.findViewById(R.id.circularImage);
+        ColorUtils.setCharacterAsImage(data.getTitle(), imageView, position);
+    }
 
     @Override
     public Filter getFilter() {

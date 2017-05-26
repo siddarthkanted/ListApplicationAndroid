@@ -1,6 +1,8 @@
 package in.bestpoint.commonlibrary;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -46,10 +48,16 @@ public class ColorUtils {
 
     public static void setCharacterAsImage(String title, ImageView imageView, int colorMapPosition) {
         if (imageView != null) {
-            char c = title.charAt(0);
+            String c = StringUtils.getFirstNCharacters(title, 2);
             imageView.setImageDrawable(null);
-            imageView.setBackground(TextDrawable.builder().buildRound(String.valueOf(c), getColorFromColorMap(colorMapPosition)));
+            imageView.setBackground(TextDrawable.builder().buildRound(c, getColorFromColorMap(colorMapPosition)));
         }
+    }
+
+    public static void setByteInImageView(byte[] byteArrayString, ImageView imageView){
+        Bitmap bmp = BitmapFactory.decodeByteArray(byteArrayString, 0, byteArrayString.length);
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageView.getWidth(),
+                imageView.getHeight(), false));
     }
 
 

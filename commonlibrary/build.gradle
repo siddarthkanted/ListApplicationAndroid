@@ -26,4 +26,5 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'org.jsoup:jsoup:1.7.3'
+    compile 'com.google.android.gms:play-services-ads:9.0.2'
 }

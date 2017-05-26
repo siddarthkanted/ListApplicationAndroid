@@ -45,10 +45,9 @@ public class FileUtil {
     }
 
 
-    public static <T> T jsonDeserializeFromFile(Context context, String path){
+    public static <T> T jsonDeserializeFromFile(Context context, String path, Class<T> clazz){
         String partnersJson = FileUtil.loadContentFromFile(context, path);
-        Type type = new TypeToken<T>(){}.getType();
-        T t = new Gson().fromJson(partnersJson, type);
+        T t = new Gson().fromJson(partnersJson, clazz);
         return t;
     }
 

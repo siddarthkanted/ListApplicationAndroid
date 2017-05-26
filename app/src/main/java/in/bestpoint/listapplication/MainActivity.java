@@ -8,11 +8,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SearchView;
 
 import java.util.List;
 
 import in.bestpoint.commonlibrary.ActivityUtils;
+import in.bestpoint.commonlibrary.AdsUtil;
 import in.bestpoint.commonlibrary.AlphabetSideSelector.IndexableListView;
 import in.bestpoint.commonlibrary.Constants;
 import in.bestpoint.commonlibrary.FileUtil;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Data> dataList;
     private IndexableListViewBaseAdapter indexableListViewBaseAdapter;
-    private IndexableListView indexableListView;
+    private ListView indexableListView;
     private SearchView searchView;
 
     @Override
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActivityUtils.setActionBarColor(this, R.color.green_00c1c1);
         dataList = FileUtil.jsonListDeserializeFromFile(getApplicationContext(), "data.json", Data[].class);
-        indexableListView = (IndexableListView) findViewById(R.id.indexableListView);
+        indexableListView = (ListView) findViewById(R.id.indexableListView);
         indexableListView.setFastScrollEnabled(true);
         setIndexableListViewItemClick();
     }
@@ -68,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String s) {
                     if(StringUtils.isNullOrEmpty(s)){
-                        indexableListView.showScroller();
+                        indexableListView.setVerticalScrollBarEnabled(false);
                     }else{
-                        indexableListView.hideScroller();
+                        indexableListView.setVerticalScrollBarEnabled(true);
                     }
                     setSearchFilter();
                     return false;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             searchView.setOnCloseListener(new SearchView.OnCloseListener() {
                 @Override
                 public boolean onClose() {
-                    indexableListView.showScroller();
+                    indexableListView.setVerticalScrollBarEnabled(true);
                     return false;
                 }
             });

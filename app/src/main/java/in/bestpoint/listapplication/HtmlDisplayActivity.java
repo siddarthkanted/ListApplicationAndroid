@@ -7,8 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 
+import com.google.android.gms.ads.AdSize;
+
 import in.bestpoint.commonlibrary.ActivityUtils;
+import in.bestpoint.commonlibrary.AdsUtil;
 import in.bestpoint.commonlibrary.Constants;
+import in.bestpoint.commonlibrary.FileUtil;
 
 public class HtmlDisplayActivity extends AppCompatActivity {
 
@@ -21,13 +25,15 @@ public class HtmlDisplayActivity extends AppCompatActivity {
         Data data = (Data)ActivityUtils.getSerializableFromIntent(this, Constants.pass_Data);
         setTitle(data.getTitle());
         webView(data);
+        AdsUtil.loadAd(this, R.id.admob_adview, getString(R.string.TestDeviceId));
     }
+
 
     private void webView(Data data){
         WebView webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setBackgroundColor(Color.TRANSPARENT);
-        webView.loadData(data.getText(), "text/html", null);
+        webView.loadData(data.getText(), "text/html; charset=UTF-8", null);
     }
 
     @Override

@@ -9,8 +9,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circularImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginRight="16dp"
