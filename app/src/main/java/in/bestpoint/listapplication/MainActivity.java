@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         indexableListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Data data = dataList.get(i);
+                Data data = (Data)indexableListViewBaseAdapter.getItem(i);
                 ActivityUtils.callActivity(MainActivity.this, HtmlDisplayActivity.class, Constants.pass_Data, data, Data.class, false, false);
             }
         });
